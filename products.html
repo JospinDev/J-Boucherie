@@ -1,0 +1,384 @@
+<!-- products.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Produits - Boucherie Gourmet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* [Previous CSS styles remain the same until products section] */
+:root {
+            --primary: #D32F2F;
+            --secondary: #F5F5F5;
+            --accent: #212121;
+            --text-light: #FFFFFF;
+            --text-dark: #333333;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: var(--text-light);
+            box-shadow: 0 2px 10px var(--shadow);
+            position: fixed;
+            top:0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        /* Products Page Specific Styles */
+        .products-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url('https://picsum.photos/2000/1000?random=5');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 80px;
+        }
+
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            background-color: var(--text-light);
+            color: var(--accent);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px var(--shadow);
+        }
+
+        .filter-button.active,
+        .filter-button:hover {
+            background-color: var(--primary);
+            color: var(--text-light);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-item {
+            background: var(--text-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 1.5rem;
+        }
+
+        .product-price {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .product-origin {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-button:hover {
+            background-color: #b71c1c;
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                padding: 1rem;
+            }
+        }
+
+         /* Footer */
+        .footer {
+            background-color: var(--accent);
+            color: var(--text-light);
+            padding: 3rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 2rem;
+        }
+
+        .jospin-signature {
+            color: var(--primary);
+            font-weight: 700;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header [Same as index.html] -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">J-Boucherie</a>
+            <div class="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="about.html">À propos</a>
+                <a href="products.html">Produits</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Products Hero -->
+    <section class="products-hero">
+        <div class="hero-content">
+            <h1>Nos Produits</h1>
+            <p>Découvrez notre sélection de viandes de qualité supérieure</p>
+        </div>
+    </section>
+
+    <!-- Category Filter -->
+    <div class="category-filter">
+        <button class="filter-button active">Tous</button>
+        <button class="filter-button">Bœuf</button>
+        <button class="filter-button">Agneau</button>
+        <button class="filter-button">Volaille</button>
+        <button class="filter-button">Porc</button>
+        <button class="filter-button">Spécialités</button>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="product-grid">
+        <!-- Product 1 -->
+        <div class="product-item" data-aos="fade-up">
+            <img src="https://picsum.photos/400/300?random=6" alt="Entrecôte" class="product-image">
+            <div class="product-details">
+                <h3>Entrecôte de Bœuf</h3>
+                <p class="product-origin">Origine: Burundi</p>
+                <p class="product-price">32€/kg</p>
+                <p>Une pièce de viande tendre et savoureuse, parfaite pour les grillades.</p>
+                <a href="#" class="product-button">Commander</a>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-item" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://picsum.photos/400/300?random=7" alt="Côtelettes" class="product-image">
+            <div class="product-details">
+                <h3>Côtelettes d'Agneau</h3>
+                <p class="product-origin">Origine: Locale</p>
+                <p class="product-price">28€/kg</p>
+                <p>Côtelettes d'agneau tendres et juteuses.</p>
+                <a href="#" class="product-button">Commander</a>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-item" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://picsum.photos/400/300?random=8" alt="Poulet" class="product-image">
+            <div class="product-details">
+                <h3>Poulet Fermier</h3>
+                <p class="product-origin">Origine: Ferme locale</p>
+                <p class="product-price">12€/kg</p>
+                <p>Poulet fermier élevé en plein air.</p>
+                <a href="#" class="product-button">Commander</a>
+            </div>
+        </div>
+
+        <!-- Add more products as needed -->
+    </div>
+
+    
+   <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Boucherie Gourmet</h3>
+                <p>Votre boucherie artisanale de confiance</p>
+                <p>123 Rue de la Viande</p>
+                <p>Bujumbura, Burundi</p>
+            </div>
+            <div class="footer-section">
+                <h3>Horaires</h3>
+                <p>Lundi - Vendredi: 8h - 19h</p>
+                <p>Samedi: 8h - 18h</p>
+                <p>Dimanche: Fermé</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Tél: +257 65805506</p>
+                <p>Email: williamjospin1@gmail.com</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2024 J-Boucherie. Tous droits réservés. | Créé par <span class="jospin-signature">JospinDev</span></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-button');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                // Add filtering logic here
+            });
+        });
+    </script>
+</body>
+</html>
